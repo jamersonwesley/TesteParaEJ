@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://kdyryfjnsnk7"]
+
+[ext_resource type="Texture2D" uid="uid://cq2jceek3pb6k" path="res://assets/Background/fundo.webp" id="1_oabld"]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="Layer2" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(640, 320)
+
+[node name="Texture" type="TextureRect" parent="Layer2"]
+custom_minimum_size = Vector2(720, 360)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_oabld")

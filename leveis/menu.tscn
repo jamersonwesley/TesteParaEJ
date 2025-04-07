@@ -1,0 +1,152 @@
+[gd_scene load_steps=16 format=3 uid="uid://ca3q4k6csdto1"]
+
+[ext_resource type="Script" uid="uid://7f6wpdhr5md4" path="res://scripts/menu.gd" id="1_k3jju"]
+[ext_resource type="Texture2D" uid="uid://h3btgwwvupk" path="res://assets/Main Characters/Ninja Frog/Idle (32x32).png" id="2_2v6j5"]
+[ext_resource type="PackedScene" uid="uid://by8p084g8hjg6" path="res://personagens/cerra.tscn" id="3_mbct7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfch7"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cldjs"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hugfa"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw735"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n4lt"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbbee"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok7vj"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw5ex"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nosy1"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgt3o"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cxub"]
+atlas = ExtResource("2_2v6j5")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0hmla"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfch7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cldjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hugfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw735")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n4lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbbee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok7vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw5ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nosy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgt3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cxub")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k3jju")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Creditos" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 320.0
+offset_right = 410.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="ColorRect/Creditos"]
+layout_mode = 2
+text = "Feito por Jamerson"
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 139.0
+offset_right = 452.0
+offset_bottom = 210.0
+
+[node name="Gamename" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "  Jogo de Plataforma Simples"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+text = "Jogar"
+
+[node name="Player_final" type="AnimatedSprite2D" parent="."]
+position = Vector2(339, 244)
+sprite_frames = SubResource("SpriteFrames_0hmla")
+
+[node name="Cerra2" parent="Player_final" instance=ExtResource("3_mbct7")]
+position = Vector2(-99, -1)
+
+[node name="Cerra" parent="Player_final" groups=["Cerra"] instance=ExtResource("3_mbct7")]
+position = Vector2(97, -1)

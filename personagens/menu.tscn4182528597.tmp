@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://irgevoglyfb0"]
+
+[ext_resource type="Script" uid="uid://7f6wpdhr5md4" path="res://scripts/menu.gd" id="1_k3jju"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k3jju")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Creditos" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 320.0
+offset_right = 410.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="ColorRect/Creditos"]
+layout_mode = 2
+text = "Feito por Jamerson"
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 139.0
+offset_right = 452.0
+offset_bottom = 210.0
+
+[node name="Gamename" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "  Jogo de Plataforma Simples"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+text = "Jogar"
