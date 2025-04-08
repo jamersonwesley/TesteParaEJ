@@ -4,10 +4,19 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var Jump_Count = 0
 var _on_floor: bool = true
+var max_health = 3
+var current_health = 3
+var is_invulnerable = false
+@onready var health_bar = get_node("/root/fase_base/CanvasLayer/TextureProgressBar")
 
 @export_category("Objects")
 @export var animations: CharacterTexture
 @onready var sprite = $Animations
+
+
+func _ready():
+	health_bar.max_value = max_health
+	health_bar.value = current_health
 
 func _physics_process(delta):
 	if is_on_floor():
@@ -62,7 +71,7 @@ func check_collisions():
 					velocity.y = JUMP_VELOCITY / 1.5
 					return
 				elif abs(normal.x) > 0.9:
-					restart_level()
+					take_damage(1)
 					return
 			elif collider.is_in_group("Cerra"):
 				restart_level()
@@ -78,3 +87,30 @@ func restart_level():
 func goto_final_screen():
 	if get_tree():
 		get_tree().change_scene_to_file("res://leveis/Final.tscn")
+
+func take_damage(amount: int):
+	if is_invulnerable:
+		return
+
+	is_invulnerable = true
+	current_health -= amount
+	current_health = clamp(current_health, 0, max_health)
+	health_bar.value = current_health
+
+	# Piscar branco
+	sprite.modulate = Color(1, 1, 1)  # Branco
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color(1, 1, 1, 0.5)  # Semi-transparente
+
+	# Knockback (empurrão para trás)
+	var knockback_dir = -sign(velocity.x) if velocity.x != 0 else -1
+	velocity.x = knockback_dir * 200
+	velocity.y = JUMP_VELOCITY / 2
+
+	# Temporário: invulnerável por 1 segundo
+	await get_tree().create_timer(1).timeout
+	sprite.modulate = Color(1, 1, 1, 1)  # Volta ao normal
+	is_invulnerable = false
+
+	if current_health <= 0:
+		restart_level()
